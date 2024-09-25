@@ -40,10 +40,10 @@
                             <span ng-repeat="band in event.bands">{{band.name}} {{$last ? '' : ', '}}</span>
                         </div>
                         <div>
-                            <input-stars max="5" ng-model="event.nbStars" ng-change="events.updateStars(event)"></input-stars>
+                            <input-stars max="5" ng-model="event.nbStars" ng-change="events.updateStarsAndComment(event)"></input-stars>
                         </div>
                         <form>
-                            <textarea placeholder="Ajouter un commentaire" ng-model="event.comment" ng-model-options="{ debounce: 1000 }" ng-change="events.updateStars(event)" class="form-control" rows="3"></textarea>
+                            <textarea placeholder="Ajouter un commentaire" ng-model="event.comment" ng-model-options="{ debounce: 1000 }" ng-change="events.updateStarsAndComment(event)" class="form-control" rows="3"></textarea>
                         </form>
                         <div class="pull-right">
                             <button ng-click="events.deleteEvent(event)" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
