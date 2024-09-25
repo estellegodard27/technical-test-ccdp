@@ -28,7 +28,11 @@ public class EventController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteEvent(@PathVariable Long id) {
-        eventService.delete(id);
+        Event existingEvent = eventService.findById(id);
+        if (existingEvent != null) {
+            eventService.delete(existingEvent);
+        }
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
