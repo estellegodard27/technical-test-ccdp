@@ -10,7 +10,7 @@ function EventService($http){
     return {
         deleteEvent:deleteEvent,
         getEvents:getEvents,
-        updateStars: updateStars
+        updateStarsAndComment: updateStarsAndComment
     };
 
     function deleteEvent(id){
@@ -26,7 +26,7 @@ function EventService($http){
         }
     }
 
-    function updateStars(event){
+    function updateStarsAndComment(event){
         return $http.put('/api/events/' + event.id, event);
     }
 }
@@ -34,7 +34,7 @@ function EventService($http){
 function EventsController(EventService){
     var vm = this;
     vm.deleteEvent = deleteEvent;
-    vm.updateStars = updateStars;
+    vm.updateStarsAndComment = updateStarsAndComment;
 
     activate();
 
@@ -54,7 +54,7 @@ function EventsController(EventService){
             });
     }
 
-    function updateStars(event){
-        return EventService.updateStars(event);
+    function updateStarsAndComment(event){
+        return EventService.updateStarsAndComment(event);
     }
 }

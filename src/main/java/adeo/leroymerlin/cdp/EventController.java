@@ -33,5 +33,12 @@ public class EventController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public void updateEvent(@PathVariable Long id, @RequestBody Event event) {
+        Event existingEvent =  eventService.findById(id);
+        if (existingEvent != null) {
+            existingEvent.setNbStars(event.getNbStars());
+            existingEvent.setComment(event.getComment());
+
+            eventService.save(existingEvent);
+        }
     }
 }
