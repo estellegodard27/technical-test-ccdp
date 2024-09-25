@@ -3,6 +3,7 @@ package adeo.leroymerlin.cdp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,7 +32,16 @@ public class EventService {
     public List<Event> getFilteredEvents(String query) {
         List<Event> events = eventRepository.findAllBy();
         // Filter the events list in pure JAVA here
-
-        return events;
+        List<Event> filteredEvents = new ArrayList<>();
+        for(Event event : events) {
+            for(Band band : event.getBands()) {
+                for(Member member : band.getMembers()) {
+                    if (member.getName().toLowerCase().contains(query.toLowerCase())) {
+                        filteredEvents.add(event);
+                    }
+                }
+            }
+        }
+        return filteredEvents;
     }
 }

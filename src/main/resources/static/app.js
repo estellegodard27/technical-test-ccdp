@@ -26,6 +26,15 @@ function EventService($http){
         }
     }
 
+    function searchEvents(query){
+        return $http.get('/api/events/search/'+query)
+            .then(searchEventsComplete);
+
+        function searchEventsComplete(response){
+            return response.data;
+        }
+    }
+
     function updateStarsAndComment(event){
         return $http.put('/api/events/' + event.id, event);
     }
