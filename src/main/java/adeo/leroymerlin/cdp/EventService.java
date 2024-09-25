@@ -19,8 +19,8 @@ public class EventService {
         return eventRepository.findAllBy();
     }
 
-    public void delete(Long id) {
-        eventRepository.deleteById(id);
+    public void delete(Event event) {
+        eventRepository.delete(event);
     }
 
     public void save(Event event) {eventRepository.save(event);}
